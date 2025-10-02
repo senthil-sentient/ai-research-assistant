@@ -1,0 +1,13 @@
+{
+  "name": "ai-research-assistant",
+  "version": "1.0.0",
+  "description": "AI Research Assistant with flexible reasoning approaches",
+  "main": "app.py",
+  "scripts": {
+    "start": "python app.py",
+    "dev": "python app.py"
+  },
+  "keywords": ["ai", "research", "dspy", "openai"],
+  "author": "Your Name",
+  "license": "MIT"
+}
