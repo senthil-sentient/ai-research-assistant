@@ -284,11 +284,7 @@
             <div class="sidebar">
                 <h3>⚙️ Configuration</h3>
                 
-                <div class="form-group">
-                    <label for="apiKey">OpenAI API Key</label>
-                    <input type="password" id="apiKey" placeholder="Enter your OpenAI API key">
-                </div>
-
+                
                 <div class="form-group">
                     <label for="reasoningApproach">🧠 Reasoning Approach</label>
                     <select id="reasoningApproach">
@@ -310,7 +306,7 @@
                     <div class="message assistant">
                         <div class="message-header">🤖 AI Assistant</div>
                         <div class="message-content">
-                            Welcome! I'm your AI Research Assistant. Please configure your API key and start researching by entering URLs and your question.
+                            Welcome! I'm your AI Research Assistant. Start researching by entering URLs and your question.
                         </div>
                     </div>
                 </div>
@@ -434,15 +430,9 @@
         }
 
         async function startResearch() {
-            const apiKey = document.getElementById('apiKey').value.trim();
             const question = document.getElementById('question').value.trim();
             const urls = document.getElementById('urls').value.trim();
             const reasoningApproach = document.getElementById('reasoningApproach').value;
-
-            if (!apiKey) {
-                showError('Please enter your OpenAI API key');
-                return;
-            }
 
             if (!question) {
                 showError('Please enter a research question');
@@ -475,8 +465,7 @@
                     body: JSON.stringify({
                         question,
                         urls: urlList,
-                        reasoning_approach: reasoningApproach,
-                        api_key: apiKey
+                        reasoning_approach: reasoningApproach
                     })
                 });
 
@@ -500,7 +489,7 @@
                 <div class="message assistant">
                     <div class="message-header">🤖 AI Assistant</div>
                     <div class="message-content">
-                        Welcome! I'm your AI Research Assistant. Please configure your API key and start researching by entering URLs and your question.
+                        Welcome! I'm your AI Research Assistant. Start researching by entering URLs and your question.
                     </div>
                 </div>
             `;

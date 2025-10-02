@@ -227,20 +227,6 @@ def main():
     with st.sidebar:
         st.header("⚙️ Configuration")
         
-        # API Key input
-        api_key = st.text_input(
-            "OpenAI API Key",
-            value=os.getenv("OPENAI_API_KEY", ""),
-            type="password",
-            help="Enter your OpenAI API key to enable research functionality"
-        )
-        
-        if api_key:
-            os.environ["OPENAI_API_KEY"] = api_key
-            st.success("✅ API Key configured")
-        else:
-            st.warning("⚠️ Please enter your OpenAI API key")
-        
         # Reasoning approach selection
         reasoning_approach = st.selectbox(
             "🧠 Reasoning Approach",
@@ -294,15 +280,13 @@ def main():
         research_button = st.button(
             "🚀 Start Research",
             type="primary",
-            disabled=not (api_key and question_input and url_input),
+            disabled=not (question_input and url_input),
             use_container_width=True
         )
     
     # Handle research request
     if research_button:
-        if not api_key:
-            st.error("Please enter your OpenAI API key in the sidebar")
-        elif not question_input:
+        if not question_input:
             st.error("Please enter a research question")
         elif not url_input:
             st.error("Please enter at least one URL")

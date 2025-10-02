@@ -27,8 +27,8 @@ streamlit run streamlit_research_ui.py
 ## 🔧 Configuration
 
 ### OpenAI API Key
-- Enter your OpenAI API key in the sidebar
-- Or set the `OPENAI_API_KEY` environment variable
+- Set the `OPENAI_API_KEY` environment variable before running the app
+- The API key is automatically loaded from the environment
 
 ### Reasoning Approaches
 - **Chain of Thought (CoT)**: Sequential reasoning, processes URLs one by one
@@ -36,11 +36,12 @@ streamlit run streamlit_research_ui.py
 
 ## 💡 Usage Tips
 
-1. **Enter URLs**: Paste URLs you want to research (one per line)
-2. **Ask Questions**: Formulate clear, specific research questions
-3. **Choose Reasoning**: Select CoT for systematic analysis or ReAct for adaptive exploration
-4. **Watch Streaming**: Enjoy real-time answer generation
-5. **Review Sources**: Check which sources contributed to each answer
+1. **Set API Key**: Configure `OPENAI_API_KEY` environment variable
+2. **Enter URLs**: Paste URLs you want to research (one per line)
+3. **Ask Questions**: Formulate clear, specific research questions
+4. **Choose Reasoning**: Select CoT for systematic analysis or ReAct for adaptive exploration
+5. **Watch Streaming**: Enjoy real-time answer generation
+6. **Review Sources**: Check which sources contributed to each answer
 
 ## 🎨 UI Features
 
@@ -69,7 +70,7 @@ streamlit run streamlit_research_ui.py
 
 ## 🛠️ Troubleshooting
 
-- **API Key Issues**: Make sure your OpenAI API key is valid and has sufficient credits
+- **API Key Issues**: Make sure your `OPENAI_API_KEY` environment variable is set and valid
 - **URL Access**: Some URLs may be blocked or require authentication
 - **Memory Usage**: Large research sessions may consume significant memory
 - **Network Timeouts**: Adjust timeout settings in the research system if needed

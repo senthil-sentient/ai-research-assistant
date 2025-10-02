@@ -49,19 +49,12 @@ def chat():
         question = data.get('question', '').strip()
         urls = data.get('urls', [])
         reasoning_approach = data.get('reasoning_approach', 'cot')
-        api_key = data.get('api_key', '').strip()
         
         if not question:
             return jsonify({'error': 'Please enter a research question'}), 400
         
         if not urls:
             return jsonify({'error': 'Please enter at least one URL'}), 400
-        
-        if not api_key:
-            return jsonify({'error': 'Please enter your OpenAI API key'}), 400
-        
-        # Set the API key
-        os.environ['OPENAI_API_KEY'] = api_key
         
         # Add user message to chat history
         add_to_chat_history('user', question, urls=urls, reasoning_approach=reasoning_approach)
@@ -101,5 +94,5 @@ def health_check():
     return jsonify({'status': 'healthy', 'message': 'AI Research Assistant is running'})
 
 if __name__ == '__main__':
-    port = int(os.environ.get('PORT', 5000))
+    port = int(os.environ.get('PORT', 8080))  # Changed default port to 8080
     app.run(host='0.0.0.0', port=port, debug=False)
