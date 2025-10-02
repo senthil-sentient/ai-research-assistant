@@ -2,15 +2,17 @@ import os
 import requests
 from bs4 import BeautifulSoup
 from urllib.parse import urljoin, urlparse
-import dspy
 from typing import List, Dict, Any, Optional
 import re
 import json
 from dataclasses import dataclass
 
+# Configure DSPy for serverless deployment
+from dspy_config import get_dspy_lm
+import dspy
+
 # Configure DSPy
-lm = dspy.LM("openai/gpt-4o-mini", api_key=os.getenv("OPENAI_API_KEY"))
-dspy.configure(lm=lm)
+lm = get_dspy_lm()
 
 @dataclass
 class ResearchResult:
