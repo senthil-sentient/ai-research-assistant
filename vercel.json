@@ -6,6 +6,9 @@
       "use": "@vercel/python"
     }
   ],
+  "env": {
+    "DSPY_CACHE_DIR": "/tmp/.dspy_cache"
+  },
   "routes": [
     {
       "src": "/(.*)",
