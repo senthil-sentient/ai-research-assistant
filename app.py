@@ -2,8 +2,14 @@ import os
 import json
 import time
 from flask import Flask, render_template, request, jsonify, session
-from test_dspy import DeepResearchSystem
 import uuid
+
+# Configure DSPy for serverless deployment BEFORE importing test_dspy
+from dspy_config import configure_dspy_for_serverless
+configure_dspy_for_serverless()
+
+# Now import the research system
+from test_dspy import DeepResearchSystem
 
 app = Flask(__name__)
 app.secret_key = os.environ.get('SECRET_KEY', 'your-secret-key-here')

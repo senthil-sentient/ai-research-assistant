@@ -5,8 +5,13 @@ from urllib.parse import urljoin, urlparse
 from typing import List, Dict, Any
 import re
 
-# Configure DSPy for serverless deployment
-from dspy_config import get_dspy_lm
+# Configure DSPy for serverless deployment BEFORE importing dspy
+from dspy_config import configure_dspy_for_serverless, get_dspy_lm
+
+# Ensure DSPy is configured for serverless environment
+configure_dspy_for_serverless()
+
+# Now import dspy after configuration
 import dspy
 
 # Configure DSPy
