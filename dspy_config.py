@@ -14,13 +14,13 @@ def configure_dspy_for_serverless():
     
     This should be called before importing DSPy in any module.
     """
-    # First try to set up a proper cache directory
-    cache_dir = os.environ.get('DSPY_CACHE', '/tmp/.dspy_cache')
+    # Set cache directory to /tmp which is writable in Vercel
+    cache_dir = '/tmp/.dspy_cache'
+    os.environ['DSPY_CACHE'] = cache_dir
     
     try:
         # Ensure the cache directory exists and is writable
         os.makedirs(cache_dir, exist_ok=True)
-        os.environ['DSPY_CACHE'] = cache_dir
         
         # Test write access
         test_file = os.path.join(cache_dir, 'test_write.tmp')
@@ -33,16 +33,10 @@ def configure_dspy_for_serverless():
         
     except Exception as e:
         print(f"⚠️  Warning: Could not configure DSPy cache directory: {e}")
-        print("   Trying minimal cache configuration...")
+        print("   Trying to disable cache entirely...")
         
-        # If cache setup fails, try minimal cache
-        if create_minimal_cache():
-            return True
-        elif disable_dspy_cache():
-            return True
-        else:
-            print("   DSPy may still work but caching will be disabled")
-            return False
+        # If cache setup fails, try to disable cache
+        return disable_dspy_cache()
 
 def disable_dspy_cache():
     """
@@ -54,10 +48,11 @@ def disable_dspy_cache():
         os.environ['DSPY_CACHE'] = '/tmp'
         os.environ['DSPY_DISABLE_CACHE'] = '1'
         
-        # Try to disable diskcache if possible
-        import diskcache
-        # This might not work in all environments, but we try
-        diskcache.settings.DEFAULT_SETTINGS['size_limit'] = 0
+        # Try to create a minimal writable directory
+        temp_dir = '/tmp'
+        cache_dir = os.path.join(temp_dir, '.dspy_cache')
+        os.makedirs(cache_dir, exist_ok=True)
+        os.environ['DSPY_CACHE'] = cache_dir
         
         print("✅ DSPy cache disabled for serverless environment")
         return True

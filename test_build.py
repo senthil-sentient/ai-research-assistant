@@ -149,6 +149,7 @@ def test_file_structure():
         'app.py',
         'test_dspy.py',
         'dspy_config.py',
+        'vercel_config.py',
         'requirements.txt',
         'vercel.json',
         'templates/index.html'

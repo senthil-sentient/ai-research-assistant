@@ -1,3 +1,6 @@
+# Import Vercel configuration FIRST - this sets up the environment
+import vercel_config
+
 import os
 import requests
 from bs4 import BeautifulSoup
